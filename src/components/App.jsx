@@ -32,8 +32,7 @@ export class App extends Component {
   };
 
   render() {
-    const { good, neutral, bad } = this.state;
-    const totalAvg = good || neutral || bad;
+    const totalAvg = this.countTotalFeedback();
 
     return (
       <div>
@@ -46,10 +45,8 @@ export class App extends Component {
         {totalAvg ? (
           <Section title="Statistick">
             <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={this.countTotalFeedback()}
+              {...this.state}
+              total={totalAvg}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           </Section>
